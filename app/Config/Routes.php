@@ -37,3 +37,8 @@ $routes->post('admin/prefixes/add', 'AdminController::addPrefixe');
 $routes->post('admin/prefixes/update/(:num)', 'AdminController::updatePrefixe/$1');
 $routes->post('admin/prefixes/delete/(:num)', 'AdminController::deletePrefixe/$1');
 $routes->get('admin/logout', 'AdminController::logout');
+
+$routes->get('admin/commissions', 'AdminController::commissions');
+$routes->post('admin/commissions/add', 'AdminController::addCommission');
+$routes->post('admin/commissions/update/(:num)', 'AdminController::updateCommission/$1');
+$routes->post('admin/commissions/delete/(:num)', 'AdminController::deleteCommission/$1');

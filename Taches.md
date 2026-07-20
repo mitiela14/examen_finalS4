@@ -61,6 +61,37 @@ VIEWS:
 - [ ok ] Mise en place du schema de base (base.sql)
 - [ ok ] Configuration du projet CodeIgniter 4 + SQLite3
 
+Version 2:
+
+MODEL:
+-  [ ok ] modification prefixe
+    - ajout champ operateur
+    - methode getOPerateurByteTelephone
+- [ ok ] Commissions
+    - CommisssionsINterOperateurModel.php
+CONTROLLER:
+-  [ ok ] modification prefixe
+    - ajout updat() dans prefixe Controller
+- [ ok ] Commissions
+    - commissions()
+    -  addCommission()
+    - updateCommission(int $id)
+    - deleteCommission(int $id)
+VIEW:
+-  [ ok ] modification prefixe
+    - admin/prefixes/index
+    - admin/prefixes/form
+- [ ok ] Commissions
+    -commissions.php
+Route: 
+-  [ ok ] modification prefixe
+    - admin/prefixes/add -> AdminController (addPrefixe)
+- [ ok ] Commissions
+    - admin/commissions -> AdminController(commissions)
+    -  admin/commissions/add -> AdminController(addCommission)
+    - admin/commissions/update/(:num) -> AdminController(updateCommission/$1)
+    - admin/commissions/delete/(:num) -> AdminController(deleteCommission/$1)
+
 ---
 
 ## Livraison v2 - Version 2 (Tag v2)

@@ -7,8 +7,8 @@ use App\Models\PrefixeModel;
 use App\Models\TypeOperationModel;
 use App\Models\TrancheMontantModel;
 use App\Models\HistoriqueModel;
+use App\Models\CommissionInterOperateurModel;
 use App\Models\UtilisateurModel;
-
 use App\Models\SoldeOperateurModel;
 
 class AdminController extends BaseController
@@ -18,6 +18,7 @@ class AdminController extends BaseController
     protected TypeOperationModel $typeOperationModel;
     protected TrancheMontantModel $trancheModel;
     protected HistoriqueModel $historiqueModel;
+    protected CommissionInterOperateurModel $commissionModel;
     protected UtilisateurModel $utilisateurModel;
     protected SoldeOperateurModel $soldeOperateurModel;
 
@@ -28,6 +29,7 @@ class AdminController extends BaseController
         $this->typeOperationModel = new TypeOperationModel();
         $this->trancheModel      = new TrancheMontantModel();
         $this->historiqueModel   = new HistoriqueModel();
+        $this->commissionModel = new CommissionInterOperateurModel();
         $this->utilisateurModel = new UtilisateurModel();
         $this->soldeOperateurModel = new SoldeOperateurModel();
     }
@@ -193,5 +195,49 @@ class AdminController extends BaseController
             redirect()->to('/admin/login')->send();
             exit;
         }
+    }
+
+        // ---------------------------------------------------------------
+    // COMMISSIONS INTER-OPERATEUR
+    // ---------------------------------------------------------------
+    public function commissions(): string
+    {
+        $this->ensureLoggedIn();
+
+        $commissions = $this->commissionModel->findAll();
+
+        return view('admin/commissions', ['commissions' => $commissions]);
+    }
+
+    public function addCommission()
+    {
+        $this->ensureLoggedIn();
+
+        $operateur   = trim($this->request->getPost('operateur'));
+        $pourcentage = (float) $this->request->getPost('pourcentage_autres');
+
+        if (! empty($operateur)) {
+            $this->commissionModel->updatePourcentage($operateur, $pourcentage);
+        }
+
+        return redirect()->to('/admin/commissions')->with('success', 'Commission enregistree.');
+    }
+
+    public function updateCommission(int $id)
+    {
+        $this->ensureLoggedIn();
+
+        $this->commissionModel->update($id, [
+            'pourcentage_autres' => (float) $this->request->getPost('pourcentage_autres'),
+        ]);
+
+        return redirect()->to('/admin/commissions')->with('success', 'Commission mise a jour.');
+    }
+
+    public function deleteCommission(int $id)
+    {
+        $this->ensureLoggedIn();
+        $this->commissionModel->delete($id);
+        return redirect()->to('/admin/commissions')->with('success', 'Commission supprimee.');
     }
 }
