@@ -89,6 +89,19 @@ VIEWS:
     - prefixes.php
 
 
+Version 2:
+-  [ ok ] modification prefixe
+MODEL:
+    - ajout champ operateur
+    - methode getOPerateurByteTelephone
+CONTROLLER:
+    - ajout updat() dans prefixe Controller
+VIEW:
+- admin/prefixes/index
+- admin/prefixes/form
+Route: 
+- admin/prefixes/add -> AdminController (addPrefixe)
+
 
 
 
