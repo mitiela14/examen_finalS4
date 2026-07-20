@@ -9,6 +9,8 @@ use App\Models\TrancheMontantModel;
 use App\Models\HistoriqueModel;
 use App\Models\UtilisateurModel;
 
+use App\Models\SoldeOperateurModel;
+
 class AdminController extends BaseController
 {
     protected AdminModel $adminModel;
@@ -17,6 +19,7 @@ class AdminController extends BaseController
     protected TrancheMontantModel $trancheModel;
     protected HistoriqueModel $historiqueModel;
     protected UtilisateurModel $utilisateurModel;
+    protected SoldeOperateurModel $soldeOperateurModel;
 
     public function __construct()
     {
@@ -26,6 +29,7 @@ class AdminController extends BaseController
         $this->trancheModel      = new TrancheMontantModel();
         $this->historiqueModel   = new HistoriqueModel();
         $this->utilisateurModel = new UtilisateurModel();
+        $this->soldeOperateurModel = new SoldeOperateurModel();
     }
 
     // ---------------------------------------------------------------
@@ -62,9 +66,20 @@ class AdminController extends BaseController
         $this->ensureLoggedIn();
 
         $gains = $this->historiqueModel->totalGainsParType();
-        $totalGeneral = array_sum(array_column($gains, 'total_frais'));
+        $gainsParOperateur = $this->historiqueModel->totalGainsParOperateur();
+        $totalGeneral = array_sum(array_column($gains, 'total_frais')) + array_sum(array_column($gains, 'total_commission'));
+        $totalFrais = array_sum(array_column($gains, 'total_frais'));
+        $totalCommission = array_sum(array_column($gains, 'total_commission'));
+        $soldesOperateurs = $this->soldeOperateurModel->findAll();
 
-        return view('admin/dashboard', ['gains' => $gains, 'totalGeneral' => $totalGeneral]);
+        return view('admin/dashboard', [
+            'gains' => $gains,
+            'gainsParOperateur' => $gainsParOperateur,
+            'totalGeneral' => $totalGeneral,
+            'totalFrais' => $totalFrais,
+            'totalCommission' => $totalCommission,
+            'soldesOperateurs' => $soldesOperateurs,
+        ]);
     }
 
       // LISTE DES CLIENTS + DETAIL

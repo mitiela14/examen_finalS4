@@ -8,8 +8,7 @@ class PrefixeModel extends Model
 {
     protected $table         = 'prefixe';
     protected $primaryKey    = 'id_prefixe';
-    protected $allowedFields = ['code',
-                                'operateur'];
+    protected $allowedFields = ['code', 'operateur'];
     protected $returnType    = 'array';
     protected $useTimestamps = false;
 
@@ -23,22 +22,16 @@ class PrefixeModel extends Model
         return (bool) $this->where('code', $prefixe)->first();
     }
 
-
     public function getOperateurByTelephone(string $telephone): ?string
     {
-        $prefixeCode = substr($telephone, 0, 3);
-        $prefixe     = $this->where('code', $prefixeCode)->first();
-
-        return $prefixe['operateur'] ?? null;
+        $prefixe = substr($telephone, 0, 3);
+        $row = $this->where('code', $prefixe)->first();
+        return (is_array($row) && isset($row['operateur'])) ? $row['operateur'] : null;
     }
 
-    public function isOperateurInterne(string $telephone): bool
+    public function isOwnOperator(string $telephone, string $monOperateur = 'airtel'): bool
     {
-        return $this->getOperateurByTelephone($telephone) === 'telma';
-    }
-
-    public function findByOperateur(string $operateur): array
-    {
-        return $this->where('operateur', $operateur)->findAll();
+        $operateur = $this->getOperateurByTelephone($telephone);
+        return $operateur === $monOperateur;
     }
 }
