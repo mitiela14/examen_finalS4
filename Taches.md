@@ -90,17 +90,23 @@ VIEWS:
 
 
 Version 2:
--  [ ok ] modification prefixe
+
 MODEL:
+-  [ ok ] modification prefixe
     - ajout champ operateur
     - methode getOPerateurByteTelephone
+- [ ok ] Commissions
+    -
 CONTROLLER:
+-  [ ok ] modification prefixe
     - ajout updat() dans prefixe Controller
 VIEW:
-- admin/prefixes/index
-- admin/prefixes/form
+-  [ ok ] modification prefixe
+    - admin/prefixes/index
+    - admin/prefixes/form
 Route: 
-- admin/prefixes/add -> AdminController (addPrefixe)
+-  [ ok ] modification prefixe
+    - admin/prefixes/add -> AdminController (addPrefixe)
 
 
 
