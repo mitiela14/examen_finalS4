@@ -7,6 +7,7 @@
             <a href="<?= site_url('client/dashboard') ?>" class="list-group-item list-group-item-action">Voir solde</a>
             <a href="<?= site_url('client/operation') ?>" class="list-group-item list-group-item-action active">Nouvelle operation</a>
             <a href="<?= site_url('client/historique') ?>" class="list-group-item list-group-item-action">Historique</a>
+            <a href="<?= site_url('client/profil') ?>" class="list-group-item list-group-item-action">Mon profil</a>
         </div>
     </div>
 

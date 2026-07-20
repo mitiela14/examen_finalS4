@@ -10,7 +10,7 @@ CREATE TABLE prefixe (
 DROP TABLE IF EXISTS utilisateur;
 CREATE TABLE utilisateur (
     id_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom           VARCHAR(50) NOT NULL,
+    nom           VARCHAR(50) NOT NULL DEFAULT '',
     statut        VARCHAR(20) NOT NULL DEFAULT 'actif',  -- 'actif' | 'suspendu'
     telephone      VARCHAR(15) NOT NULL UNIQUE,  -- ex: '0331234567'
     solde          DECIMAL(15,2) NOT NULL DEFAULT 0,
