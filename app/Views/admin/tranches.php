@@ -8,8 +8,8 @@
 
         <div class="card shadow-sm mb-4">
             <div class="card-body">
-                <h5 class="mb-3">Ajouter une </h5>
-                <form method="post" action="<?= site_url('admin/s/add') ?>" class="row g-2">
+                <h5 class="mb-3">Ajouter une tranche</h5>
+                <form method="post" action="<?= site_url('admin/tranches/add') ?>" class="row g-2">
                     <?= csrf_field() ?>
                     <div class="col-md-3">
                         <label class="form-label">Type</label>
@@ -43,23 +43,23 @@
                 <div class="card-body">
                     <h5 class="mb-3">Bareme - <?= esc(ucfirst($type['libelle'])) ?></h5>
 
-                    <?php $s = $sParType[$type['id_type_operation']] ?? []; ?>
+                    <?php $tranches = $tranchesParType[$type['id_type_operation']] ?? []; ?>
 
-                    <?php if (empty($s)): ?>
-                        <p class="text-muted">Aucune  definie.</p>
+                    <?php if (empty($tranches)): ?>
+                        <p class="text-muted">Aucune tranche definie.</p>
                     <?php else: ?>
                         <table class="table table-sm table-striped">
                             <thead>
                                 <tr><th>Min</th><th>Max</th><th>Frais</th><th></th></tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($s as $t): ?>
+                                <?php foreach ($tranches as $t): ?>
                                     <tr>
                                         <td><?= number_format($t['montant_min'], 0, ',', ' ') ?></td>
                                         <td><?= number_format($t['montant_max'], 0, ',', ' ') ?></td>
                                         <td><?= number_format($t['frais'], 0, ',', ' ') ?> Ar</td>
                                         <td>
-                                            <form method="post" action="<?= site_url('admin/s/delete/' . $t['id_']) ?>">
+                                            <form method="post" action="<?= site_url('admin/tranches/delete/' . $t['id_tranche']) ?>">
                                                 <?= csrf_field() ?>
                                                 <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
                                             </form>

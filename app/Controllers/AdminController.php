@@ -7,7 +7,7 @@ use App\Models\PrefixeModel;
 use App\Models\TypeOperationModel;
 use App\Models\TrancheMontantModel;
 use App\Models\HistoriqueModel;
-use App\Models\teurModel;
+use App\Models\UtilisateurModel;
 
 class AdminController extends BaseController
 {
@@ -16,7 +16,7 @@ class AdminController extends BaseController
     protected TypeOperationModel $typeOperationModel;
     protected TrancheMontantModel $trancheModel;
     protected HistoriqueModel $historiqueModel;
-    protected teurModel $teurModel;
+    protected UtilisateurModel $utilisateurModel;
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class AdminController extends BaseController
         $this->typeOperationModel = new TypeOperationModel();
         $this->trancheModel      = new TrancheMontantModel();
         $this->historiqueModel   = new HistoriqueModel();
-        $this->teurModel  = new teurModel();
+        $this->utilisateurModel = new UtilisateurModel();
     }
 
     // ---------------------------------------------------------------
@@ -73,7 +73,7 @@ class AdminController extends BaseController
     {
         $this->ensureLoggedIn();
 
-        $clients = $this->teurModel->findAll();
+        $clients = $this->utilisateurModel->findAll();
 
         return view('admin/clients', ['clients' => $clients]);
     }
@@ -82,7 +82,7 @@ class AdminController extends BaseController
     {
         $this->ensureLoggedIn();
 
-        $client     = $this->teurModel->find($id);
+        $client     = $this->utilisateurModel->find($id);
         $historique = $this->historiqueModel->historiqueClient($id);
 
         return view('admin/client_detail', ['client' => $client, 'historique' => $historique]);
