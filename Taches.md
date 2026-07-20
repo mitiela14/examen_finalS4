@@ -111,8 +111,34 @@ BASE DE DONNEES:
 - [ ok ] base.sql (schema V2 integre directement)
     - Table historique_client avec colonnes : commission, operateur_destinataire, montant_recu, montant_debit
     - Table prefixe avec colonne operateur
-    - Table commission_inter_operateur (1% pour telma)
+    - Table commission_inter_operateur (1% pour airtel)
     - Table solde_operateur
     - Vue vue_gains_par_type_v2
     - Donnees de test : 4 prefixes (033,037 = telma; 032 = orange; 031 = airtel)
-    - Client de test avec solde 500 000 Ar pour tester les transferts
+    - Clients de test Airtel (031) avec solde 500 000 Ar et 5 000 Ar
+
+BUG FIXES V2:
+- [ ok ] Correction critique : verfication solvabilite AVANT les transferts dans envoi multiple
+- [ ok ] Correction : montant negatif quand frais > montant (meme operateur + frais_inclus)
+- [ ok ] Correction : variable JS nbAutre -> nbAutres (typo)
+- [ ok ] Correction : transfert inter-operateur ne doit pas credit dans table utilisateur ( argent va dans solde_operateur )
+- [ ok ] Correction : login restreint aux clients Airtel (031) uniquement
+- [ ok ] Correction : operateur own = airtel (pas telma)
+- [ ok ] Correction : service('db') non disponible dans vues -> passe via controller
+- [ ok ] Correction : .env database path override supprime (utilise WRITEPATH par defaut)
+- [ ok ] Correction : tous les Modeles rendus defensifs (is_array + isset)
+
+VUES MODIFIEES (DESIGN V2):
+- [ ok ] layout.php : Google Fonts Inter, CSS variables, navbar gradient, flash auto-dismiss
+- [ ok ] _sidebar.php : partial partage client/operateur
+- [ ok ] home.php : design hero moderne
+- [ ok ] client/login.php : design ameliore + placeholder 031
+- [ ok ] client/dashboard.php : solde anime gradient, quick actions cards
+- [ ok ] client/operation.php : formulaire stylise, switch toggle, resume anime
+- [ ok ] client/historique.php : tableau ameliore, badges operateur
+- [ ok ] client/profil.php : design coherant avec sidebar
+
+OPERATEUR V2 (ETUDIANT 1):
+- [ ok ] admin/dashboard.php : gains par type + gains par operateur + soldes operateurs
+- [ ok ] AdminController.php : donnees V2 (gainsParOperateur, soldesOperateurs)
+- [ ok ] HistoriqueModel.php : totalGainsParOperateur()
