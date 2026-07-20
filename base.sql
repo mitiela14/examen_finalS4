@@ -105,3 +105,63 @@ INSERT INTO utilisateur (nom, statut, telephone, solde) VALUES ('Narindra', 'act
 INSERT INTO utilisateur (nom, statut, telephone, solde) VALUES ('NyAntema', 'actif', '0371112222', 5000);
 
 
+-- =====================================================================
+-- VERSION 2 - MODIFICATIONS (Tag v2)
+-- =====================================================================
+
+-- 1. Ajout colonne operateur dans prefixe
+ALTER TABLE prefixe ADD COLUMN operateur VARCHAR(20) DEFAULT 'telma';
+
+-- 2. Table commission_inter_operateur (% en plus pour autres operateurs)
+CREATE TABLE IF NOT EXISTS commission_inter_operateur (
+    id_commission INTEGER PRIMARY KEY AUTOINCREMENT,
+    operateur VARCHAR(20) NOT NULL,
+    pourcentage_autres DECIMAL(5,2) NOT NULL
+);
+
+-- 3. Table solde_operateur (montants a envoyer a chaque operateur)
+CREATE TABLE IF NOT EXISTS solde_operateur (
+    id_solde INTEGER PRIMARY KEY AUTOINCREMENT,
+    operateur VARCHAR(20) NOT NULL UNIQUE,
+    montant_a_envoyer DECIMAL(15,2) NOT NULL DEFAULT 0
+);
+
+-- 4. Ajout colonnes dans historique_client
+ALTER TABLE historique_client ADD COLUMN frais_inclus BOOLEAN DEFAULT 0;
+ALTER TABLE historique_client ADD COLUMN est_envoi_multiple BOOLEAN DEFAULT 0;
+ALTER TABLE historique_client ADD COLUMN reference_envoi VARCHAR(50) DEFAULT NULL;
+
+-- 5. Vue v2 pour separer gains operateur et autres operateurs
+DROP VIEW IF EXISTS vue_gains_par_type_v2;
+CREATE VIEW vue_gains_par_type_v2 AS
+SELECT
+    t.libelle AS type_operation,
+    CASE 
+        WHEN p.operateur = 'telma' THEN 'operateur'
+        ELSE 'autres_operateurs'
+    END AS categorie_operateur,
+    COUNT(h.id_historique) AS nombre_operations,
+    SUM(h.frais) AS total_frais
+FROM historique_client h
+JOIN type_operation t ON t.id_type_operation = h.id_type_operation
+LEFT JOIN prefixe p ON SUBSTR(h.telephone_destinataire, 1, 3) = p.code
+WHERE h.telephone_destinataire IS NOT NULL
+GROUP BY t.libelle, 
+    CASE 
+        WHEN p.operateur = 'telma' THEN 'operateur'
+        ELSE 'autres_operateurs'
+    END;
+
+-- 6. Donnees de test V2
+UPDATE prefixe SET operateur = 'telma' WHERE code = '033';
+UPDATE prefixe SET operateur = 'telma' WHERE code = '037';
+INSERT INTO prefixe (code, operateur) VALUES ('032', 'orange');
+INSERT INTO prefixe (code, operateur) VALUES ('031', 'airtel');
+
+INSERT INTO commission_inter_operateur (operateur, pourcentage_autres) VALUES ('telma', 5.00);
+
+INSERT INTO solde_operateur (operateur, montant_a_envoyer) VALUES ('telma', 0);
+INSERT INTO solde_operateur (operateur, montant_a_envoyer) VALUES ('orange', 0);
+INSERT INTO solde_operateur (operateur, montant_a_envoyer) VALUES ('airtel', 0);
+
+
