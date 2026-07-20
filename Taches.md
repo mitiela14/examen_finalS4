@@ -24,6 +24,16 @@ CONTROLLERS
     - historique (affichage de l'historique)
 
 ROUTES 
+
+VIEWS
+- [ ok ] layout.php
+- [ ok ] home.php
+- [ ok ] client
+    - login.php
+    - dashboard.php
+    - historique.php
+    - operation.php
+
     
 
 

@@ -1,19 +1,3 @@
-<<<<<<< HEAD
--- =====================================================================
--- BASE.SQL - Mobile Money Simulator (VINA-AKOHO style)
--- Examen Projet Final S4 - Version 1
--- SGBD : SQLite3
--- =====================================================================
--- Ce fichier contient : creation des tables, vues, et donnees de test
--- =====================================================================
-
--- ---------------------------------------------------------------------
--- Table : prefixe
--- Prefixes telephoniques valides pour l'operateur (ex: 033, 037)
--- ---------------------------------------------------------------------
-=======
-
->>>>>>> 6168e5e (base)
 DROP TABLE IF EXISTS prefixe;
 CREATE TABLE prefixe (
     id_prefixe   INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,15 +5,6 @@ CREATE TABLE prefixe (
     date_ajout   DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-<<<<<<< HEAD
--- ---------------------------------------------------------------------
--- Table : utilisateur
--- Les clients. Compte cree automatiquement au premier login.
--- ---------------------------------------------------------------------
-DROP TABLE IF EXISTS utilisateur;
-CREATE TABLE utilisateur (
-    id_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
-=======
 
 
 DROP TABLE IF EXISTS utilisateur;
@@ -37,20 +12,12 @@ CREATE TABLE utilisateur (
     id_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
     nom           VARCHAR(50) NOT NULL,
     statut        VARCHAR(20) NOT NULL DEFAULT 'actif',  -- 'actif' | 'suspendu'
->>>>>>> 6168e5e (base)
     telephone      VARCHAR(15) NOT NULL UNIQUE,  -- ex: '0331234567'
     solde          DECIMAL(15,2) NOT NULL DEFAULT 0,
     date_creation  DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-<<<<<<< HEAD
--- ---------------------------------------------------------------------
--- Table : admin
--- Compte(s) operateur / back-office. Login par code d'acces.
--- ---------------------------------------------------------------------
-=======
 
->>>>>>> 6168e5e (base)
 DROP TABLE IF EXISTS admin;
 CREATE TABLE admin (
     id_admin  INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -58,30 +25,14 @@ CREATE TABLE admin (
     code_acces VARCHAR(50) NOT NULL UNIQUE
 );
 
-<<<<<<< HEAD
--- ---------------------------------------------------------------------
--- Table : type_operation
--- depot / retrait / transfert
--- ---------------------------------------------------------------------
-=======
 
->>>>>>> 6168e5e (base)
 DROP TABLE IF EXISTS type_operation;
 CREATE TABLE type_operation (
     id_type_operation INTEGER PRIMARY KEY AUTOINCREMENT,
     libelle           VARCHAR(20) NOT NULL UNIQUE  -- 'depot' | 'retrait' | 'transfert'
 );
 
-<<<<<<< HEAD
--- ---------------------------------------------------------------------
--- Table : tranche_montant
--- Bareme de frais par tranche, pour chaque type d'operation.
--- Modifiable depuis le back-office (CRUD admin).
--- ---------------------------------------------------------------------
-=======
 
-
->>>>>>> 6168e5e (base)
 DROP TABLE IF EXISTS tranche_montant;
 CREATE TABLE tranche_montant (
     id_tranche        INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,18 +43,7 @@ CREATE TABLE tranche_montant (
     FOREIGN KEY (id_type_operation) REFERENCES type_operation(id_type_operation)
 );
 
-<<<<<<< HEAD
--- ---------------------------------------------------------------------
--- Table : historique_client
--- Toutes les operations effectuees (depot, retrait, transfert).
--- Sert a la fois pour l'historique client ET pour le calcul des gains admin.
--- Pour un transfert : id_utilisateur = celui qui agit,
--- telephone_destinataire renseigne uniquement si transfert.
--- ---------------------------------------------------------------------
-=======
 
-
->>>>>>> 6168e5e (base)
 DROP TABLE IF EXISTS historique_client;
 CREATE TABLE historique_client (
     id_historique         INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -118,13 +58,7 @@ CREATE TABLE historique_client (
     FOREIGN KEY (id_type_operation) REFERENCES type_operation(id_type_operation)
 );
 
-<<<<<<< HEAD
--- =====================================================================
--- VUE : gains par type d'operation (pour le dashboard operateur)
--- =====================================================================
-=======
 
->>>>>>> 6168e5e (base)
 DROP VIEW IF EXISTS vue_gains_par_type;
 CREATE VIEW vue_gains_par_type AS
 SELECT
@@ -166,11 +100,8 @@ INSERT INTO tranche_montant (id_type_operation, montant_min, montant_max, frais)
 INSERT INTO tranche_montant (id_type_operation, montant_min, montant_max, frais) VALUES (1, 0, 999999999, 0);
 
 -- Quelques clients de test
-<<<<<<< HEAD
-INSERT INTO utilisateur (telephone, solde) VALUES ('0331234567', 15000);
-INSERT INTO utilisateur (telephone, solde) VALUES ('0371112222', 5000);
-=======
+
 INSERT INTO utilisateur (nom, statut, telephone, solde) VALUES ('Narindra', 'actif', '0331234567', 15000);
 INSERT INTO utilisateur (nom, statut, telephone, solde) VALUES ('NyAntema', 'actif', '0371112222', 5000);
 
->>>>>>> 6168e5e (base)
+
