@@ -1,0 +1,37 @@
+## VERSION 1 DE L'EXAMEN
+
+CREATION DE BASE 
+    -utilisateur
+    -admin
+    -prefixe 
+    -type_operation
+    -tranche_montant
+    -historique_client
+
+COTE CLIENT
+    -login (verification de prefixe)
+        -si son prefixe correspond a l'operateur il est automatiquement inscrit
+        -sinon rejeter
+    -formulaire d'operation
+        -bouton operation -> dropdown des types d'operation (le client choisi : retrait,depot,transfert)
+        -selon l'operation , on affiche le formulaire adapter 
+    -historique 
+        -pour voir ses operations effectuees
+
+    -dashboard du client 
+        -information du client
+        -types operation 
+        -sidebar :  -voir solde
+                    -historique 
+
+
+COTE OPERATEUR 
+    -login
+        -code 
+    -dashbord 
+        -gain via les differents frais (details)
+        -sidebar :  -liste des clients -> detail clients (historique, etc )
+                    -gestion des tranches (CRUD)
+                    -configuration des prefixes
+            
+
