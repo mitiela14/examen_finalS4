@@ -140,11 +140,23 @@ class AdminController extends BaseController
         $this->ensureLoggedIn();
 
         $code = trim($this->request->getPost('code'));
+        $operateur = trim($this->request->getPost('operateur')) ?: 'telma';
         if (! empty($code)) {
-            $this->prefixeModel->insert(['code' => $code]);
+            $this->prefixeModel->insert(['code' => $code, 'operateur' => $operateur]);
         }
 
         return redirect()->to('/admin/prefixes')->with('success', 'Prefixe ajoute.');
+    }
+
+    public function updatePrefixe(int $id)
+    {
+        $this->ensureLoggedIn();
+
+        $this->prefixeModel->update($id, [
+            'operateur' => trim($this->request->getPost('operateur')),
+        ]);
+
+        return redirect()->to('/admin/prefixes')->with('success', 'Prefixe mis a jour.');
     }
 
     public function deletePrefixe(int $id)
