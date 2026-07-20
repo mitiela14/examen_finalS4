@@ -14,6 +14,10 @@ class PrefixeModel extends Model
 
     public function isValid(string $telephone): bool
     {
+        if (strlen($telephone) < 3) {
+            return false;
+        }
+
         $prefixe = substr($telephone, 0, 3);
         return (bool) $this->where('code', $prefixe)->first();
     }
