@@ -55,6 +55,11 @@ class ClientController extends BaseController
             $client = $this->utilisateurModel->find($id);
         }
 
+        // Un compte suspendu par l'operateur ne doit pas pouvoir se connecter
+        if ($client['statut'] === 'suspendu') {
+            return redirect()->back()->with('error', 'Ce compte est suspendu. Contactez l\'operateur.');
+        }
+
         session()->set([
             'client_id'        => $client['id_utilisateur'],
             'client_telephone' => $client['telephone'],
@@ -155,6 +160,32 @@ class ClientController extends BaseController
         ]);
 
         return redirect()->to('/client/dashboard')->with('success', 'Operation effectuee avec succes.');
+    }
+
+    // MON PROFIL (modification du nom uniquement - le statut reste gere par l'operateur)
+    public function profil(): string
+    {
+        $this->ensureLoggedIn();
+
+        $client = $this->utilisateurModel->find(session()->get('client_id'));
+
+        return view('client/profil', ['client' => $client]);
+    }
+
+    public function doProfil()
+    {
+        $this->ensureLoggedIn();
+
+        $nom = trim((string) $this->request->getPost('nom'));
+
+        if (empty($nom)) {
+            return redirect()->back()->with('error', 'Veuillez saisir un nom.');
+        }
+
+        // On ne met a jour que le nom : le client ne doit pas pouvoir changer son propre statut
+        $this->utilisateurModel->update(session()->get('client_id'), ['nom' => $nom]);
+
+        return redirect()->to('/client/profil')->with('success', 'Profil mis a jour.');
     }
 
     // HISTORIQUE

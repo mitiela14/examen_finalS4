@@ -14,6 +14,8 @@ $routes->get('/', 'Home::index');
 $routes->get('client/login', 'ClientController::login');
 $routes->post('client/login', 'ClientController::doLogin');
 $routes->get('client/dashboard', 'ClientController::dashboard');
+$routes->get('client/profil', 'ClientController::profil');
+$routes->post('client/profil', 'ClientController::doProfil');
 $routes->get('client/operation', 'ClientController::operation');
 $routes->post('client/operation', 'ClientController::doOperation');
 $routes->get('client/historique', 'ClientController::historique');
