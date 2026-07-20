@@ -28,3 +28,9 @@ class CommissionInterOperateurModel extends Model
         }
     }
 }
+    public function getCommission(string $operateur): float
+    {
+        $row = $this->where('operateur', $operateur)->first();
+        return (is_array($row) && isset($row['pourcentage_autres'])) ? (float) $row['pourcentage_autres'] : 0;
+    }
+}

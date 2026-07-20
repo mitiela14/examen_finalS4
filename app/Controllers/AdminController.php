@@ -7,8 +7,9 @@ use App\Models\PrefixeModel;
 use App\Models\TypeOperationModel;
 use App\Models\TrancheMontantModel;
 use App\Models\HistoriqueModel;
-use App\Models\teurModel;
 use App\Models\CommissionInterOperateurModel;
+use App\Models\UtilisateurModel;
+use App\Models\SoldeOperateurModel;
 
 class AdminController extends BaseController
 {
@@ -17,8 +18,9 @@ class AdminController extends BaseController
     protected TypeOperationModel $typeOperationModel;
     protected TrancheMontantModel $trancheModel;
     protected HistoriqueModel $historiqueModel;
-    protected teurModel $teurModel;
     protected CommissionInterOperateurModel $commissionModel;
+    protected UtilisateurModel $utilisateurModel;
+    protected SoldeOperateurModel $soldeOperateurModel;
 
     public function __construct()
     {
@@ -27,8 +29,9 @@ class AdminController extends BaseController
         $this->typeOperationModel = new TypeOperationModel();
         $this->trancheModel      = new TrancheMontantModel();
         $this->historiqueModel   = new HistoriqueModel();
-        $this->teurModel  = new teurModel();
         $this->commissionModel = new CommissionInterOperateurModel();
+        $this->utilisateurModel = new UtilisateurModel();
+        $this->soldeOperateurModel = new SoldeOperateurModel();
     }
 
     // ---------------------------------------------------------------
@@ -65,9 +68,20 @@ class AdminController extends BaseController
         $this->ensureLoggedIn();
 
         $gains = $this->historiqueModel->totalGainsParType();
-        $totalGeneral = array_sum(array_column($gains, 'total_frais'));
+        $gainsParOperateur = $this->historiqueModel->totalGainsParOperateur();
+        $totalGeneral = array_sum(array_column($gains, 'total_frais')) + array_sum(array_column($gains, 'total_commission'));
+        $totalFrais = array_sum(array_column($gains, 'total_frais'));
+        $totalCommission = array_sum(array_column($gains, 'total_commission'));
+        $soldesOperateurs = $this->soldeOperateurModel->findAll();
 
-        return view('admin/dashboard', ['gains' => $gains, 'totalGeneral' => $totalGeneral]);
+        return view('admin/dashboard', [
+            'gains' => $gains,
+            'gainsParOperateur' => $gainsParOperateur,
+            'totalGeneral' => $totalGeneral,
+            'totalFrais' => $totalFrais,
+            'totalCommission' => $totalCommission,
+            'soldesOperateurs' => $soldesOperateurs,
+        ]);
     }
 
       // LISTE DES CLIENTS + DETAIL
@@ -76,7 +90,7 @@ class AdminController extends BaseController
     {
         $this->ensureLoggedIn();
 
-        $clients = $this->teurModel->findAll();
+        $clients = $this->utilisateurModel->findAll();
 
         return view('admin/clients', ['clients' => $clients]);
     }
@@ -85,7 +99,7 @@ class AdminController extends BaseController
     {
         $this->ensureLoggedIn();
 
-        $client     = $this->teurModel->find($id);
+        $client     = $this->utilisateurModel->find($id);
         $historique = $this->historiqueModel->historiqueClient($id);
 
         return view('admin/client_detail', ['client' => $client, 'historique' => $historique]);
@@ -143,11 +157,23 @@ class AdminController extends BaseController
         $this->ensureLoggedIn();
 
         $code = trim($this->request->getPost('code'));
+        $operateur = trim($this->request->getPost('operateur')) ?: 'telma';
         if (! empty($code)) {
-            $this->prefixeModel->insert(['code' => $code]);
+            $this->prefixeModel->insert(['code' => $code, 'operateur' => $operateur]);
         }
 
         return redirect()->to('/admin/prefixes')->with('success', 'Prefixe ajoute.');
+    }
+
+    public function updatePrefixe(int $id)
+    {
+        $this->ensureLoggedIn();
+
+        $this->prefixeModel->update($id, [
+            'operateur' => trim($this->request->getPost('operateur')),
+        ]);
+
+        return redirect()->to('/admin/prefixes')->with('success', 'Prefixe mis a jour.');
     }
 
     public function deletePrefixe(int $id)

@@ -14,6 +14,8 @@ $routes->get('/', 'Home::index');
 $routes->get('client/login', 'ClientController::login');
 $routes->post('client/login', 'ClientController::doLogin');
 $routes->get('client/dashboard', 'ClientController::dashboard');
+$routes->get('client/profil', 'ClientController::profil');
+$routes->post('client/profil', 'ClientController::doProfil');
 $routes->get('client/operation', 'ClientController::operation');
 $routes->post('client/operation', 'ClientController::doOperation');
 $routes->get('client/historique', 'ClientController::historique');
@@ -32,6 +34,7 @@ $routes->post('admin/tranches/add', 'AdminController::addTranche');
 $routes->post('admin/tranches/delete/(:num)', 'AdminController::deleteTranche/$1');
 $routes->get('admin/prefixes', 'AdminController::prefixes');
 $routes->post('admin/prefixes/add', 'AdminController::addPrefixe');
+$routes->post('admin/prefixes/update/(:num)', 'AdminController::updatePrefixe/$1');
 $routes->post('admin/prefixes/delete/(:num)', 'AdminController::deletePrefixe/$1');
 $routes->get('admin/logout', 'AdminController::logout');
 
