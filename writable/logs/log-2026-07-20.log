@@ -1,0 +1,201 @@
+INFO - 2026-07-20 09:44:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:47:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:48:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 09:48:14 --> Exception: Unable to prepare statement: 1, no such table: prefixe in /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php:158
+Stack trace:
+#0 /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php(158): SQLite3->query()
+#1 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(734): CodeIgniter\Database\SQLite3\Connection->execute()
+#2 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/elmitia/Musique/examen_finalS4/system/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+#4 /home/elmitia/Musique/examen_finalS4/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/elmitia/Musique/examen_finalS4/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/elmitia/Musique/examen_finalS4/app/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+#7 /home/elmitia/Musique/examen_finalS4/app/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+#8 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+#9 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+#10 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/elmitia/Musique/examen_finalS4/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 /home/elmitia/Musique/examen_finalS4/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/elmitia/Musique/examen_finalS4/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 /home/elmitia/Musique/examen_finalS4/system/rewrite.php(44): require_once('...')
+#15 {main}
+CRITICAL - 2026-07-20 09:48:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such table: prefixe
+[Method: POST, Route: client/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 688.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 4 APPPATH/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+ 5 APPPATH/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/elmitia/Musique/examen_finalS4/public/index.php')
+CRITICAL - 2026-07-20 09:48:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such table: prefixe
+in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
+ 1 SYSTEMPATH/Database/BaseConnection.php(734): CodeIgniter\Database\SQLite3\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 6 APPPATH/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+ 7 APPPATH/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+ 9 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/elmitia/Musique/examen_finalS4/public/index.php')
+CRITICAL - 2026-07-20 09:48:14 --> [Caused by] Exception: Unable to prepare statement: 1, no such table: prefixe
+in SYSTEMPATH/Database/SQLite3/Connection.php on line 158.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(158): SQLite3->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(734): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 7 APPPATH/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+ 8 APPPATH/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+10 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+15 SYSTEMPATH/rewrite.php(44): require_once('/home/elmitia/Musique/examen_finalS4/public/index.php')
+INFO - 2026-07-20 09:50:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:51:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 09:51:02 --> Error connecting to the database: CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php:100
+Stack trace:
+#0 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(421): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php(63): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(616): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/elmitia/Musique/examen_finalS4/system/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+#4 /home/elmitia/Musique/examen_finalS4/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/elmitia/Musique/examen_finalS4/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/elmitia/Musique/examen_finalS4/app/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+#7 /home/elmitia/Musique/examen_finalS4/app/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+#8 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+#9 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+#10 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/elmitia/Musique/examen_finalS4/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 /home/elmitia/Musique/examen_finalS4/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/elmitia/Musique/examen_finalS4/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 /home/elmitia/Musique/examen_finalS4/system/rewrite.php(44): require_once('...')
+#15 {main}
+CRITICAL - 2026-07-20 09:51:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: SQLite3 error: Unable to open database: unable to open database file
+[Method: POST, Route: client/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 467.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(63): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(616): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 6 APPPATH/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+ 7 APPPATH/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+ 9 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/elmitia/Musique/examen_finalS4/public/index.php')
+INFO - 2026-07-20 09:52:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:52:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 09:52:42 --> Error connecting to the database: CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php:100
+Stack trace:
+#0 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(421): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php(63): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(616): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/elmitia/Musique/examen_finalS4/system/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+#4 /home/elmitia/Musique/examen_finalS4/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/elmitia/Musique/examen_finalS4/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/elmitia/Musique/examen_finalS4/app/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+#7 /home/elmitia/Musique/examen_finalS4/app/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+#8 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+#9 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+#10 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/elmitia/Musique/examen_finalS4/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 /home/elmitia/Musique/examen_finalS4/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/elmitia/Musique/examen_finalS4/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 /home/elmitia/Musique/examen_finalS4/system/rewrite.php(44): require_once('...')
+#15 {main}
+CRITICAL - 2026-07-20 09:52:42 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: SQLite3 error: Unable to open database: unable to open database file
+[Method: POST, Route: client/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 467.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(63): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(616): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 6 APPPATH/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+ 7 APPPATH/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+ 9 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/elmitia/Musique/examen_finalS4/public/index.php')
+INFO - 2026-07-20 09:53:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:53:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 09:53:26 --> Error connecting to the database: CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php:100
+Stack trace:
+#0 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(421): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/elmitia/Musique/examen_finalS4/system/Database/SQLite3/Connection.php(63): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/elmitia/Musique/examen_finalS4/system/Database/BaseConnection.php(616): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/elmitia/Musique/examen_finalS4/system/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+#4 /home/elmitia/Musique/examen_finalS4/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/elmitia/Musique/examen_finalS4/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/elmitia/Musique/examen_finalS4/app/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+#7 /home/elmitia/Musique/examen_finalS4/app/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+#8 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+#9 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+#10 /home/elmitia/Musique/examen_finalS4/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/elmitia/Musique/examen_finalS4/system/Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 /home/elmitia/Musique/examen_finalS4/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/elmitia/Musique/examen_finalS4/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 /home/elmitia/Musique/examen_finalS4/system/rewrite.php(44): require_once('...')
+#15 {main}
+CRITICAL - 2026-07-20 09:53:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: SQLite3 error: Unable to open database: unable to open database file
+[Method: POST, Route: client/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 467.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(63): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(616): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 6 APPPATH/Models/PrefixeModel.php(18): CodeIgniter\BaseModel->first()
+ 7 APPPATH/Controllers/ClientController.php(43): App\Models\PrefixeModel->isValid()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\ClientController->doLogin()
+ 9 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/elmitia/Musique/examen_finalS4/public/index.php')
+INFO - 2026-07-20 09:54:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:54:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:54:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:54:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:54:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-07-20 09:55:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
