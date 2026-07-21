@@ -65,6 +65,15 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-md-4">
+                        <a href="<?= site_url('client/epargne') ?>" class="text-decoration-none">
+                            <div class="card border-0 text-center py-4" style="border-radius: var(--mm-radius); box-shadow: var(--mm-shadow); transition: var(--mm-transition);" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--mm-shadow-md)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--mm-shadow)'">
+                                <i class="bi bi-person-gear text-secondary mb-2" style="font-size: 2rem;"></i>
+                                <div class="fw-600" style="color: var(--mm-dark);">Mon compte epargne</div>
+                                <small class="text-muted">Voir mon solde</small>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

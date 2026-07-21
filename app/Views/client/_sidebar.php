@@ -18,4 +18,8 @@ $currentPage = $currentPage ?? '';
     <a href="<?= site_url('client/profil') ?>" class="sidebar-link <?= $currentPage === 'profil' ? 'active' : '' ?>">
         <i class="bi bi-person-gear"></i> Mon profil
     </a>
+    <a href="<?= site_url('client/epargne') ?>" class="sidebar-link <?= $currentPage === 'epargne' ? 'active' : '' ?>">
+        <i class="bi bi-person-gear"></i> Mon compte epargne
+    </a>
+   
 </div>

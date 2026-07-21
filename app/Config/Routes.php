@@ -20,6 +20,9 @@ $routes->get('client/operation', 'ClientController::operation');
 $routes->post('client/operation', 'ClientController::doOperation');
 $routes->get('client/historique', 'ClientController::historique');
 $routes->get('client/logout', 'ClientController::logout');
+$routes->get('client/epargne', 'ClientController::epargne');
+$routes->post('client/epargne', 'ClientController::doepargne');
+
 
 // Espace OPERATEUR (admin)
 // ---------------------------------------------------------------

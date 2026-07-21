@@ -50,6 +50,14 @@ CREATE TABLE tranche_montant (
     FOREIGN KEY (id_type_operation) REFERENCES type_operation(id_type_operation)
 );
 
+CREATE TABLE epargne (
+    id_epargne         INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_utilisateur     INTEGER NOT NULL,
+    montant            DECIMAL(15,2) NOT NULL DEFAULT 0,
+    date_creation      DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur)
+);
+
 CREATE TABLE historique_client (
     id_historique          INTEGER PRIMARY KEY AUTOINCREMENT,
     id_utilisateur         INTEGER NOT NULL,

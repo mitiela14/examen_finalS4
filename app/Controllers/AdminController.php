@@ -284,4 +284,57 @@ class AdminController extends BaseController
 
         return $montant;
     }
+
+    /*
+    public function getepargne(): string
+    {
+        $this->ensureLoggedIn();
+
+        $clientId = session()->get('client_id');
+        $client = $this->utilisateurModel->find($clientId);
+
+        return view('client/epargne', ['client' => $client]);
+    }
+
+    public function doepargne()
+    {
+        $this->ensureLoggedIn();
+
+        $clientId = session()->get('client_id');
+        $montant = (float) $this->request->getPost('montant');
+
+        if ($montant > 0) {
+            // Mettre à jour le solde d'épargne du client
+            $this->utilisateurModel->update($clientId, [
+                'solde_epargne' => $this->utilisateurModel->getSoldeEpargne($clientId) + $montant,
+            ]);
+        }
+
+        return redirect()->to('/client/epargne')->with('success', 'Montant ajouté à votre compte épargne.');
+    }
+        */
+
+    public function epargne(): string
+    {
+       $this->ensureLoggedIn();
+       $Epargne = $this->utilisateurModel->getEpargneByClientId(session()->get('client_id'));
+
+       return view('client/epargne', ['Epargne' => $Epargne]);
+    }
+
+    public function addepargne()
+    {
+        $this->ensureLoggedIn();
+
+        $clientId = session()->get('client_id');
+        $montant = (float) $this->request->getPost('montant');
+
+        if ($montant > 0) {
+            // Mettre à jour le solde d'épargne du client
+            $this->utilisateurModel->updateEpargne($clientId, $montant);
+        }
+
+        return redirect()->to('/client/epargne')->with('success', 'Montant ajouté à votre compte épargne.');
+    }
+    
 }
