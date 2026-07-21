@@ -42,3 +42,6 @@ $routes->get('admin/commissions', 'AdminController::commissions');
 $routes->post('admin/commissions/add', 'AdminController::addCommission');
 $routes->post('admin/commissions/update/(:num)', 'AdminController::updateCommission/$1');
 $routes->post('admin/commissions/delete/(:num)', 'AdminController::deleteCommission/$1');
+
+$routes->get('admin/promotions', 'AdminController::promotions');
+$routes->post('admin/promotions/add', 'AdminController::addPromotion');

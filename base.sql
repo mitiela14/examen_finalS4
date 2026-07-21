@@ -76,6 +76,13 @@ CREATE TABLE commission_inter_operateur (
     pourcentage_autres DECIMAL(5,2) NOT NULL
 );
 
+
+ CREATE TABLE promotion(
+    id_promotion INTEGER PRIMARY KEY AUTOINCREMENT,
+    pourcentage DECIMAL(5,2) NOT NULL,
+    date_expiration DATETIME NOT NULL
+);
+
 CREATE TABLE solde_operateur (
     id_solde INTEGER PRIMARY KEY AUTOINCREMENT,
     operateur VARCHAR(20) NOT NULL UNIQUE,
