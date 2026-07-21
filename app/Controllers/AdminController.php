@@ -10,6 +10,8 @@ use App\Models\HistoriqueModel;
 use App\Models\CommissionInterOperateurModel;
 use App\Models\UtilisateurModel;
 use App\Models\SoldeOperateurModel;
+use App\Models\PromotionModel;
+
 
 class AdminController extends BaseController
 {
@@ -21,7 +23,8 @@ class AdminController extends BaseController
     protected CommissionInterOperateurModel $commissionModel;
     protected UtilisateurModel $utilisateurModel;
     protected SoldeOperateurModel $soldeOperateurModel;
-
+  
+    protected PromotionModel $promotionModel;
     public function __construct()
     {
         $this->adminModel        = new AdminModel();
@@ -239,5 +242,46 @@ class AdminController extends BaseController
         $this->ensureLoggedIn();
         $this->commissionModel->delete($id);
         return redirect()->to('/admin/commissions')->with('success', 'Commission supprimee.');
+    }
+
+
+    public function promotions(): string{
+        
+        $this->ensureLoggedIn();
+        $promotion = $this->promotionModel->getPromotion();
+
+        return view('admin/promotions', ['promotion' => $promotion]);
+    }
+
+    public function addPromotion()
+    {
+        $this->ensureLoggedIn();
+
+        $pourcentage = (float) $this->request->getPost('pourcentage');
+        $date_expiration = trim($this->request->getPost('date_expiration'));
+
+        if (! empty($pourcentage) && ! empty($date_expiration)) {
+            $this->promotionModel->insert([
+                'pourcentage' => $pourcentage,
+                'date_expiration' => $date_expiration,
+            ]);
+        }
+
+        return redirect()->to('/admin/promotions')->with('success', 'Promotion ajoutee.');
+    }
+
+    //quand il y a une promotion active , on reduit le montant de frais transfert pour chaque tranche de meme operateur selon le pourcentage
+
+    public function applyPromotion(float $montant, string $operateur): float
+    {
+        $promotion = $this->promotionModel->getPromotion();
+
+        if ($promotion) {
+            $pourcentage = (float) $promotion['pourcentage'];
+            $montantReduit = $montant * (1 - ($pourcentage / 100));
+            return round($montantReduit, 2);
+        }
+
+        return $montant;
     }
 }
